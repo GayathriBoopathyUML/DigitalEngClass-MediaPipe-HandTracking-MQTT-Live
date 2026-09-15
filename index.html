@@ -265,7 +265,7 @@ function logPublish(values, byteLength, sent) {
   const line = document.createElement('div');
   line.className = 'entry';
   const tag = sent ? '' : ' <span style="color:#f66">[NOT SENT - disconnected]</span>';
-  line.innerHTML = `<span class="ts">[${ts}]</span> [${values.join(', ')}] &rarr; "${mqttTopic}" (${byteLength} bytes)${tag}`;
+  line.innerHTML = `<span class="ts">[${ts}]</span> [${values.join(', ')}]<br>"${mqttTopic}" (${byteLength} bytes)${tag}`;
   consoleLogEl.appendChild(line);
   logEntryCount++;
 
@@ -394,8 +394,8 @@ function classifyGesture(px, landmarksRaw) {
   if (fingers.index && !fingers.middle && !fingers.ring && !fingers.pinky) return 1;
   if (fingers.index && fingers.middle && !fingers.ring) return 2;
   if (fingers.index && fingers.pinky && !fingers.middle && !fingers.ring) return 3;
-  if (fingers.thumb && fingers.index && fingers.middle && fingers.ring && fingers.pinky) return 4;
-  if (fingers.thumb && !fingers.index && !fingers.middle && !fingers.ring && !fingers.pinky) return 5;
+  if (fingers.index && fingers.middle && fingers.ring && fingers.pinky) return 4;
+  if (!fingers.index && !fingers.middle && !fingers.ring && !fingers.pinky) return 5;
   return 0;
 }
 
